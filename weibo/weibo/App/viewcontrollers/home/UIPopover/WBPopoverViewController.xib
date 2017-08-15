@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WBPopoverViewController" customModule="weibo" customModuleProvider="target">
+            <connections>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="325" height="397"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="popover_background" translatesAutoresizingMaskIntoConstraints="NO" id="MVt-Bf-mQN">
+                    <rect key="frame" x="0.0" y="0.0" width="325" height="397"/>
+                </imageView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M5Y-tj-dcF">
+                    <rect key="frame" x="10" y="15" width="305" height="372"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="M5Y-tj-dcF" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="Rdo-uR-YV9"/>
+                <constraint firstItem="MVt-Bf-mQN" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="YYA-vs-pS8"/>
+                <constraint firstAttribute="bottom" secondItem="MVt-Bf-mQN" secondAttribute="bottom" id="gOL-6n-TZm"/>
+                <constraint firstItem="M5Y-tj-dcF" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="15" id="j7t-hP-uUy"/>
+                <constraint firstItem="MVt-Bf-mQN" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="lfM-tY-cRM"/>
+                <constraint firstAttribute="trailing" secondItem="M5Y-tj-dcF" secondAttribute="trailing" constant="10" id="oPB-tS-NDQ"/>
+                <constraint firstAttribute="trailing" secondItem="MVt-Bf-mQN" secondAttribute="trailing" id="qIt-ie-qjR"/>
+                <constraint firstAttribute="bottom" secondItem="M5Y-tj-dcF" secondAttribute="bottom" constant="10" id="tAA-bk-x8i"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="9.5" y="189.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="popover_background" width="217" height="49"/>
+    </resources>
+</document>

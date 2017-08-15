@@ -1,0 +1,12 @@
+# Uncomment the next line to define a global platform for your project
+platform :ios, '8.0'
+use_frameworks!
+
+target 'weibo' do
+
+  pod 'AFNetworking'
+  pod 'SVProgressHUD'
+#  pod 'ShareSDK3'
+#  pod 'ShareSDK3/ShareSDKPlatforms/SinaWeibo'
+
+end
