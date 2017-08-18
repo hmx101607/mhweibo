@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import WebKit
 import SVProgressHUD
 
 class WBOAuthViewController: UIViewController {
@@ -49,6 +50,7 @@ extension WBOAuthViewController {
         let request = URLRequest(url: url)
         
         // 4.加载request对象
+        webView.delegate = self
         webView.loadRequest(request)
     }
 }
@@ -63,7 +65,7 @@ extension WBOAuthViewController {
     
     @objc fileprivate func fillItemClick() {
         // 1.书写js代码 : javascript / java --> 雷锋和雷峰塔
-        let jsCode = "document.getElementById('userId').value='1606020376@qq.com';document.getElementById('passwd').value='haomage';"
+        let jsCode = "document.getElementById('userId').value='466317974@qq.com';document.getElementById('passwd').value='hmx101607';"
         
         // 2.执行js代码
         webView.stringByEvaluatingJavaScript(from: jsCode)
@@ -75,17 +77,18 @@ extension WBOAuthViewController {
 extension WBOAuthViewController : UIWebViewDelegate {
     // webView开始加载网页
     func webViewDidStartLoad(_ webView: UIWebView) {
-        SVProgressHUD.show()
+//        SVProgressHUD.show()
     }
     
     // webView网页加载完成
     func webViewDidFinishLoad(_ webView: UIWebView) {
-        SVProgressHUD.dismiss()
+//        SVProgressHUD.dismiss()
     }
     
     // webView加载网页失败
     func webView(_ webView: UIWebView, didFailLoadWithError error: Error) {
-        SVProgressHUD.dismiss()
+        MLog(message: error.localizedDescription)
+//        SVProgressHUD.dismiss()
     }
     
     
@@ -115,6 +118,7 @@ extension WBOAuthViewController : UIWebViewDelegate {
         
         return false
     }
+    
 }
 
 
@@ -122,25 +126,36 @@ extension WBOAuthViewController : UIWebViewDelegate {
 extension WBOAuthViewController {
     /// 请求AccessToken
     fileprivate func loadAccessToken(_ code : String) {
-        APIClient.shareInstance.loadAccessToken(code) { (result, error) -> () in
+        
+        let urlString = "https://api.weibo.com/oauth2/access_token?client_id=\(weibo_appkey)&client_secret=\(weibo_appsecret)&grant_type=authorization_code&redirect_uri=\(weibo_redirect_uri)&code=\(code)"
+//        APIClient.shareInstance.post(urlString, parameters: nil, progress: nil, success: { (task : URLSessionDataTask, resp : AnyObject) in
+//                let accout = WBAccountModel(dict: resp as! [String : AnyObject])
+//                self.loadUserInfo(accout)
+//            } as? (URLSessionDataTask, Any?) -> Void, failure: { (task : URLSessionDataTask?, error : NSError) in
+//                MLog(message: error.domain)
+//        } as? (URLSessionDataTask?, Error) -> Void)
+        
+        let parameters = [String : AnyObject]()
+        APIClient.shareInstance.request(.POST, urlString: urlString, parameters: parameters) { (parameters :AnyObject?, error : NSError?) in
             // 1.错误校验
             if error != nil {
                 print(error!)
                 return
             }
-            
+
             // 2.拿到结果
-            guard let accountDict = result else {
+            guard let accountDict = parameters else {
                 print("没有获取授权后的数据")
                 return
             }
-            
+
             // 3.将字典转成模型对象
-            let account = WBAccountModel(dict: accountDict)
+            let account = WBAccountModel(dict: accountDict as! [String : AnyObject])
             
             // 4.请求用户信息
             self.loadUserInfo(account)
         }
+        
     }
     
     

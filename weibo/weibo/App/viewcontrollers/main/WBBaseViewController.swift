@@ -46,13 +46,13 @@ extension WBBaseViewController {
     
     @objc fileprivate func loginBtnClick () {
         // 1.创建授权控制器
-//        let oauthVc = WBOAuthViewController()
-//        
-//        // 2.包装导航栏控制器
-//        let oauthNav = UINavigationController(rootViewController: oauthVc)
-//        
-//        // 3.弹出控制器
-//        present(oauthNav, animated: true, completion: nil)
+        let oauthVc = WBOAuthViewController()
+        
+        // 2.包装导航栏控制器
+        let oauthNav = UINavigationController(rootViewController: oauthVc)
+        
+        // 3.弹出控制器
+        present(oauthNav, animated: true, completion: nil)
 
     }
 }

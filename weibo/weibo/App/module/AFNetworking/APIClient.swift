@@ -38,9 +38,9 @@ extension APIClient {
         
         // 3.发送网络请求
         if methodType == .GET {
-            get(urlString, parameters: parameters, progress: nil, success: successCallBack as! (URLSessionDataTask, Any?) -> Void, failure: failureCallBack as! (URLSessionDataTask?, Error) -> Void)
+            get(urlString, parameters: parameters, progress: nil, success: successCallBack as? (URLSessionDataTask, Any?) -> Void, failure: failureCallBack as? (URLSessionDataTask?, Error) -> Void)
         } else {
-            post(urlString, parameters: parameters, progress: nil, success: successCallBack as! (URLSessionDataTask, Any?) -> Void, failure: failureCallBack as! (URLSessionDataTask?, Error) -> Void)
+            post(urlString, parameters: parameters, progress: nil, success: successCallBack as? (URLSessionDataTask, Any?) -> Void, failure: failureCallBack as? (URLSessionDataTask?, Error) -> Void)
         }
     }
 }
@@ -48,7 +48,7 @@ extension APIClient {
 
 // MARK:- 请求AccessToken
 extension APIClient {
-    func loadAccessToken(_ code : String, finished : @escaping (_ result : [String : AnyObject]?, _ error : NSError?) -> ()) {
+    func loadAccessToken(code : String, finished : @escaping ((_ result : [String : AnyObject]?, _ error : NSError?)->())) {
         // 1.获取请求的URLString
         let urlString = "https://api.weibo.com/oauth2/access_token"
         
@@ -57,8 +57,11 @@ extension APIClient {
         
         // 3.发送网络请求
         request(.POST, urlString: urlString, parameters: parameters as [String : AnyObject]) { (result, error) -> () in
+            MLog(message: result)
+            MLog(message: error?.localizedDescription)
             finished(result as? [String : AnyObject], error)
         }
+
     }
 }
 
