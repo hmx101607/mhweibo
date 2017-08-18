@@ -6,7 +6,7 @@ target 'weibo' do
 
   pod 'AFNetworking'
   pod 'SVProgressHUD'
-#  pod 'ShareSDK3'
-#  pod 'ShareSDK3/ShareSDKPlatforms/SinaWeibo'
+  pod 'ShareSDK3'
+  pod 'ShareSDK3/ShareSDKPlatforms/SinaWeibo'
 
 end

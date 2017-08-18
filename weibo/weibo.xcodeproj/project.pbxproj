@@ -589,9 +589,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/weibo/App/vendors/weibosdk",
-					"$(PROJECT_DIR)/weibo/App/vendors/libWeiboSDK",
-					"$(PROJECT_DIR)/weibo/App/libWeiboSDK",
 					"$(PROJECT_DIR)/weibo/App/vendors/weiboSDK/ShareSDK/Support/PlatformSDK/SinaWeiboSDK",
 					"$(PROJECT_DIR)/weibo/App/vendors/weiboSDK/ShareSDK/Support/PlatformSDK/WeChatSDK",
 				);
@@ -627,9 +624,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/weibo/App/vendors/weibosdk",
-					"$(PROJECT_DIR)/weibo/App/vendors/libWeiboSDK",
-					"$(PROJECT_DIR)/weibo/App/libWeiboSDK",
 					"$(PROJECT_DIR)/weibo/App/vendors/weiboSDK/ShareSDK/Support/PlatformSDK/SinaWeiboSDK",
 					"$(PROJECT_DIR)/weibo/App/vendors/weiboSDK/ShareSDK/Support/PlatformSDK/WeChatSDK",
 				);

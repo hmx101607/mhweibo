@@ -31,7 +31,7 @@ class WBVisitorView: UIView {
     func addAnnimationView () {
         let rotationAnimation = CABasicAnimation(keyPath: "transform.rotation.z")
         rotationAnimation.fromValue = 0
-        rotationAnimation.toValue = M_PI * 2
+        rotationAnimation.toValue = Double.pi
         rotationAnimation.duration = 10
         rotationAnimation.repeatCount = MAXFLOAT
         rotationAnimation.isRemovedOnCompletion = true
