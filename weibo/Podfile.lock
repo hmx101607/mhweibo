@@ -14,32 +14,16 @@ PODS:
   - AFNetworking/Serialization (3.1.0)
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
-  - MOBFoundation (2.2.19)
-  - ShareSDK3 (3.6.3):
-    - MOBFoundation
-    - ShareSDK3/ShareSDK (= 3.6.3)
-  - ShareSDK3/ShareSDK (3.6.3):
-    - MOBFoundation
-  - ShareSDK3/ShareSDKPlatforms/SinaWeibo (3.6.3):
-    - MOBFoundation
-  - ShareSDK3/ShareSDKUI (3.6.3):
-    - MOBFoundation
   - SVProgressHUD (2.1.2)
 
 DEPENDENCIES:
   - AFNetworking
-  - MOBFoundation
-  - ShareSDK3
-  - ShareSDK3/ShareSDKPlatforms/SinaWeibo
-  - ShareSDK3/ShareSDKUI
   - SVProgressHUD
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
-  MOBFoundation: e962b2aee79e2b8f626e2d30c2f23e9f13e5331e
-  ShareSDK3: d271520113160eb24b31cd642b45b38fcd592d93
   SVProgressHUD: c404a55d78acbeb7ebb78b76d3faf986475a6994
 
-PODFILE CHECKSUM: b0396c542672678278a9002bb2e33ee635e00a44
+PODFILE CHECKSUM: bc673d44a370183c4c5bdf46c1f536cba9230022
 
 COCOAPODS: 1.2.0

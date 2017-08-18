@@ -12,7 +12,7 @@ class WBBaseViewController: UIViewController {
      // MARK:- 懒加载属性
     lazy var visitorView : WBVisitorView = WBVisitorView.visitorView()
     // MARK:- 是否登录
-    var isLogin : Bool = false
+    var isLogin : Bool = WBAccountViewModel.shareIntance.isLogin
     
     override func loadView() {
         isLogin ? super.loadView() : setupVisitorView()
@@ -54,10 +54,6 @@ extension WBBaseViewController {
         // 3.弹出控制器
         present(oauthNav, animated: true, completion: nil)
         
-//        ShareSDK.getUserInfo(.typeSinaWeibo) { (state : SSDKResponseState, user : SSDKUser?, error : Error?) in
-//            
-//        }
-
     }
 }
 

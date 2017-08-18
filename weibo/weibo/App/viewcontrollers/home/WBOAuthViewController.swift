@@ -127,24 +127,12 @@ extension WBOAuthViewController {
     /// 请求AccessToken
     fileprivate func loadAccessToken(_ code : String) {
         
-        let urlString = "https://api.weibo.com/oauth2/access_token?client_id=\(weibo_appkey)&client_secret=\(weibo_appsecret)&grant_type=authorization_code&redirect_uri=\(weibo_redirect_uri)&code=\(code)"
-//        APIClient.shareInstance.post(urlString, parameters: nil, progress: nil, success: { (task : URLSessionDataTask, resp : AnyObject) in
-//                let accout = WBAccountModel(dict: resp as! [String : AnyObject])
-//                self.loadUserInfo(accout)
-//            } as? (URLSessionDataTask, Any?) -> Void, failure: { (task : URLSessionDataTask?, error : NSError) in
-//                MLog(message: error.domain)
-//        } as? (URLSessionDataTask?, Error) -> Void)
         
-        let parameters = [String : AnyObject]()
-        APIClient.shareInstance.request(.POST, urlString: urlString, parameters: parameters) { (parameters :AnyObject?, error : NSError?) in
-            // 1.错误校验
-            if error != nil {
-                print(error!)
-                return
-            }
-
+        let urlString = "https://api.weibo.com/oauth2/access_token?client_id=\(weibo_appkey)&client_secret=\(weibo_appsecret)&grant_type=authorization_code&redirect_uri=\(weibo_redirect_uri)&code=\(code)"
+        APIClient.shareInstance.post(urlString, parameters: [:], progress: nil, success: { (task : URLSessionDataTask?, resp : Any?) in
+            MLog(message: resp)
             // 2.拿到结果
-            guard let accountDict = parameters else {
+            guard let accountDict = resp else {
                 print("没有获取授权后的数据")
                 return
             }
@@ -154,13 +142,15 @@ extension WBOAuthViewController {
             
             // 4.请求用户信息
             self.loadUserInfo(account)
+        }) { (task : URLSessionDataTask?, error : Error) in
+            MLog(message: error.localizedDescription)
         }
-        
     }
     
     
     /// 请求用户信息
     fileprivate func loadUserInfo(_ account : WBAccountModel) {
+        
         // 1.获取AccessToken
         guard let accessToken = account.access_token else {
             return
@@ -171,25 +161,32 @@ extension WBOAuthViewController {
             return
         }
         
+        // 1.获取请求的URLString
+        let urlString = "https://api.weibo.com/2/users/show.json"
+        
+        // 2.获取请求的参数
+        let parameters = ["access_token" : accessToken, "uid" : uid]
+        
         // 3.发送网络请求
-        APIClient.shareInstance.loadUserInfo(accessToken, uid: uid) { (result, error) -> () in
-            // 1.错误校验
-            if error != nil {
-                print(error!)
-                return
-            }
-            
+        APIClient.shareInstance.get(urlString, parameters: parameters, progress: nil, success: { (task : URLSessionDataTask, resp : Any?) in
             // 2.拿到用户信息的结果
-            guard let userInfoDict = result else {
-                return
-            }
+            let userInfoDict = resp as AnyObject
             
             // 3.从字典中取出昵称和用户头像地址
             account.screen_name = userInfoDict["screen_name"] as? String
             account.avatar_large = userInfoDict["avatar_large"] as? String
+
+            //4. 建数据保存在沙盒中  "accout.plist"
+            var accountPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first
+            accountPath = (accountPath! as NSString).appendingPathComponent("accout.plist")
+            MLog(message: accountPath)
+            //4.1保存对象
+            NSKeyedArchiver.archiveRootObject(account, toFile: accountPath!)
             
-            print(account)
+        }) { (task : URLSessionDataTask?, error : Error) in
+            MLog(message: error.localizedDescription)
         }
+        
     }
 }
 

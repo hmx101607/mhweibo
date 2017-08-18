@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4F95399234AD7C32CEE41CFB /* Pods_weibo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C57239C37706FF509BBFAB62 /* Pods_weibo.framework */; };
+		9339418C1F473C3100E79D91 /* WBAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9339418B1F473C3100E79D91 /* WBAccountViewModel.swift */; };
 		9340A9F21F3E9B0000C2B250 /* WBVisitorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9340A9F11F3E9B0000C2B250 /* WBVisitorView.swift */; };
 		9340A9F41F3E9B1000C2B250 /* WBVisitorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9340A9F31F3E9B1000C2B250 /* WBVisitorView.xib */; };
 		9340A9F61F3E9EC200C2B250 /* WBBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9340A9F51F3E9EC200C2B250 /* WBBaseViewController.swift */; };
@@ -51,6 +52,7 @@
 		931882AD1F4289730068B28C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		931882AF1F4289880068B28C /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		931882B11F4289990068B28C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		9339418B1F473C3100E79D91 /* WBAccountViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WBAccountViewModel.swift; sourceTree = "<group>"; };
 		9340A9F11F3E9B0000C2B250 /* WBVisitorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WBVisitorView.swift; sourceTree = "<group>"; };
 		9340A9F31F3E9B1000C2B250 /* WBVisitorView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WBVisitorView.xib; sourceTree = "<group>"; };
 		9340A9F51F3E9EC200C2B250 /* WBBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WBBaseViewController.swift; sourceTree = "<group>"; };
@@ -212,6 +214,7 @@
 			isa = PBXGroup;
 			children = (
 				9340AA131F3FE46B00C2B250 /* WBAccountModel.swift */,
+				9339418B1F473C3100E79D91 /* WBAccountViewModel.swift */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -450,6 +453,7 @@
 				9340A9F21F3E9B0000C2B250 /* WBVisitorView.swift in Sources */,
 				93FE127E1F2C7636005F3157 /* WBTabbarViewController.swift in Sources */,
 				93FE12891F2C77EC005F3157 /* MUtil.swift in Sources */,
+				9339418C1F473C3100E79D91 /* WBAccountViewModel.swift in Sources */,
 				9340AA071F3EFAE800C2B250 /* WBPopoverAnimatedTransitioning.swift in Sources */,
 				9340AA021F3EC44800C2B250 /* WBPopoverViewController.swift in Sources */,
 				93FE12801F2C7653005F3157 /* WBHomeViewController.swift in Sources */,
