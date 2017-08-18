@@ -22,12 +22,16 @@ PODS:
     - MOBFoundation
   - ShareSDK3/ShareSDKPlatforms/SinaWeibo (3.6.3):
     - MOBFoundation
+  - ShareSDK3/ShareSDKUI (3.6.3):
+    - MOBFoundation
   - SVProgressHUD (2.1.2)
 
 DEPENDENCIES:
   - AFNetworking
+  - MOBFoundation
   - ShareSDK3
   - ShareSDK3/ShareSDKPlatforms/SinaWeibo
+  - ShareSDK3/ShareSDKUI
   - SVProgressHUD
 
 SPEC CHECKSUMS:
@@ -36,6 +40,6 @@ SPEC CHECKSUMS:
   ShareSDK3: d271520113160eb24b31cd642b45b38fcd592d93
   SVProgressHUD: c404a55d78acbeb7ebb78b76d3faf986475a6994
 
-PODFILE CHECKSUM: 786d249ac3bc6ba835b6d087552ff19dcc0a5dcd
+PODFILE CHECKSUM: b0396c542672678278a9002bb2e33ee635e00a44
 
 COCOAPODS: 1.2.0

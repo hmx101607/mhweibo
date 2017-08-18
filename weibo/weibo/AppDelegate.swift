@@ -17,7 +17,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         
-        
         UITabBar.appearance().tintColor = UIColor.orange
         
         window = UIWindow(frame: UIScreen.main.bounds)
@@ -25,6 +24,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.backgroundColor = UIColor.white
         window?.makeKeyAndVisible()
         return true
+    }
+    
+    func configShareSDK () {
+        ShareSDK.registerApp("b899c1e73f34", activePlatforms: [SSDKPlatformType.typeSinaWeibo.rawValue],
+                             onImport: {(platform : SSDKPlatformType) -> Void in
+                switch platform
+                {
+                case SSDKPlatformType.typeSinaWeibo:
+                    ShareSDKConnector.connectWeibo(WeiboSDK.classForCoder())
+                default:
+                    break
+                }
+        }, onConfiguration: {(platform : SSDKPlatformType , appInfo : NSMutableDictionary?) -> Void in
+            switch platform
+            {
+            case SSDKPlatformType.typeSinaWeibo:
+                //设置新浪微博应用信息,其中authType设置为使用SSO＋Web形式授权
+                appInfo?.ssdkSetupSinaWeibo(byAppKey: weibo_appkey,
+                                            appSecret: weibo_appsecret,
+                                            redirectUri: weibo_redirect_uri,
+                                            authType: SSDKAuthTypeBoth)
+            default:
+                break
+            }
+        })
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
@@ -49,7 +73,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
     
-
+//    func application(_ application: UIApplication, handleOpen url: URL) -> Bool {
+//        return ShareSDK
+//    }
+//    
+   
     
 }
 

@@ -53,6 +53,10 @@ extension WBBaseViewController {
         
         // 3.弹出控制器
         present(oauthNav, animated: true, completion: nil)
+        
+//        ShareSDK.getUserInfo(.typeSinaWeibo) { (state : SSDKResponseState, user : SSDKUser?, error : Error?) in
+//            
+//        }
 
     }
 }

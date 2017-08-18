@@ -3,5 +3,10 @@
 //
 
 
+#import <ShareSDK/ShareSDK.h>
+#import <ShareSDKUI/ShareSDK+SSUI.h>
+#import <ShareSDKConnector/ShareSDKConnector.h>
 
+//新浪微博SDK头文件
+#import "WeiboSDK.h"
 

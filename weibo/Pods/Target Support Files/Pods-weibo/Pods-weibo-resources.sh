@@ -79,10 +79,12 @@ EOM
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_resource "ShareSDK3/ShareSDK/Support/Required/ShareSDK.bundle"
   install_resource "ShareSDK3/ShareSDK/Support/PlatformSDK/SinaWeiboSDK/WeiboSDK.bundle"
+  install_resource "ShareSDK3/ShareSDK/Support/Optional/ShareSDKUI.bundle"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_resource "ShareSDK3/ShareSDK/Support/Required/ShareSDK.bundle"
   install_resource "ShareSDK3/ShareSDK/Support/PlatformSDK/SinaWeiboSDK/WeiboSDK.bundle"
+  install_resource "ShareSDK3/ShareSDK/Support/Optional/ShareSDKUI.bundle"
 fi
 
 mkdir -p "${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}"

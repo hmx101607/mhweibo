@@ -7,6 +7,8 @@ target 'weibo' do
   pod 'AFNetworking'
   pod 'SVProgressHUD'
   pod 'ShareSDK3'
+  pod 'MOBFoundation'
+  pod 'ShareSDK3/ShareSDKUI'
   pod 'ShareSDK3/ShareSDKPlatforms/SinaWeibo'
 
 end
