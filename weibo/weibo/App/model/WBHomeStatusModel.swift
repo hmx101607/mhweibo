@@ -14,8 +14,8 @@ class WBHomeStatusModel: NSObject {
     var source : String?//微博来源
     var text : String?          //微博的正文
     var mid : String?           //微博的ID
-    
     var user : WBUserModel?
+    var pic_urls : [[String : String]]? //图片数组
     
     init(dict : [String : AnyObject]) {
         super.init()

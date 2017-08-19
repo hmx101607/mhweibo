@@ -17,6 +17,8 @@
 		933941981F4800AE00E79D91 /* WBHomeStatusViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933941971F4800AE00E79D91 /* WBHomeStatusViewModel.swift */; };
 		9339419C1F48060C00E79D91 /* WBHomeStatusTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9339419A1F48060C00E79D91 /* WBHomeStatusTableViewCell.swift */; };
 		9339419D1F48060C00E79D91 /* WBHomeStatusTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9339419B1F48060C00E79D91 /* WBHomeStatusTableViewCell.xib */; };
+		933941A01F4833AE00E79D91 /* WBImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9339419E1F4833AE00E79D91 /* WBImageCollectionViewCell.swift */; };
+		933941A11F4833AE00E79D91 /* WBImageCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9339419F1F4833AE00E79D91 /* WBImageCollectionViewCell.xib */; };
 		9340A9F21F3E9B0000C2B250 /* WBVisitorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9340A9F11F3E9B0000C2B250 /* WBVisitorView.swift */; };
 		9340A9F41F3E9B1000C2B250 /* WBVisitorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9340A9F31F3E9B1000C2B250 /* WBVisitorView.xib */; };
 		9340A9F61F3E9EC200C2B250 /* WBBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9340A9F51F3E9EC200C2B250 /* WBBaseViewController.swift */; };
@@ -69,6 +71,8 @@
 		933941971F4800AE00E79D91 /* WBHomeStatusViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WBHomeStatusViewModel.swift; sourceTree = "<group>"; };
 		9339419A1F48060C00E79D91 /* WBHomeStatusTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WBHomeStatusTableViewCell.swift; sourceTree = "<group>"; };
 		9339419B1F48060C00E79D91 /* WBHomeStatusTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WBHomeStatusTableViewCell.xib; sourceTree = "<group>"; };
+		9339419E1F4833AE00E79D91 /* WBImageCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WBImageCollectionViewCell.swift; sourceTree = "<group>"; };
+		9339419F1F4833AE00E79D91 /* WBImageCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WBImageCollectionViewCell.xib; sourceTree = "<group>"; };
 		9340A9F11F3E9B0000C2B250 /* WBVisitorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WBVisitorView.swift; sourceTree = "<group>"; };
 		9340A9F31F3E9B1000C2B250 /* WBVisitorView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WBVisitorView.xib; sourceTree = "<group>"; };
 		9340A9F51F3E9EC200C2B250 /* WBBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WBBaseViewController.swift; sourceTree = "<group>"; };
@@ -158,6 +162,8 @@
 			children = (
 				9339419A1F48060C00E79D91 /* WBHomeStatusTableViewCell.swift */,
 				9339419B1F48060C00E79D91 /* WBHomeStatusTableViewCell.xib */,
+				9339419E1F4833AE00E79D91 /* WBImageCollectionViewCell.swift */,
+				9339419F1F4833AE00E79D91 /* WBImageCollectionViewCell.xib */,
 			);
 			path = home;
 			sourceTree = "<group>";
@@ -411,6 +417,7 @@
 				93FE126A1F2C72FC005F3157 /* LaunchScreen.storyboard in Resources */,
 				9340AA121F3FE2AF00C2B250 /* WBOAuthViewController.xib in Resources */,
 				9340AA031F3EC44800C2B250 /* WBPopoverViewController.xib in Resources */,
+				933941A11F4833AE00E79D91 /* WBImageCollectionViewCell.xib in Resources */,
 				933941901F47460E00E79D91 /* WBWelcomeViewController.xib in Resources */,
 				93FE12671F2C72FC005F3157 /* Assets.xcassets in Resources */,
 				9340A9F41F3E9B1000C2B250 /* WBVisitorView.xib in Resources */,
@@ -491,6 +498,7 @@
 				93FE127E1F2C7636005F3157 /* WBTabbarViewController.swift in Sources */,
 				93FE12891F2C77EC005F3157 /* MUtil.swift in Sources */,
 				9339418C1F473C3100E79D91 /* WBAccountViewModel.swift in Sources */,
+				933941A01F4833AE00E79D91 /* WBImageCollectionViewCell.swift in Sources */,
 				9340AA071F3EFAE800C2B250 /* WBPopoverAnimatedTransitioning.swift in Sources */,
 				9340AA021F3EC44800C2B250 /* WBPopoverViewController.swift in Sources */,
 				93FE12801F2C7653005F3157 /* WBHomeViewController.swift in Sources */,
