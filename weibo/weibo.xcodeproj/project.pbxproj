@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		4F95399234AD7C32CEE41CFB /* Pods_weibo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C57239C37706FF509BBFAB62 /* Pods_weibo.framework */; };
 		9339418C1F473C3100E79D91 /* WBAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9339418B1F473C3100E79D91 /* WBAccountViewModel.swift */; };
+		9339418F1F47460E00E79D91 /* WBWelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9339418D1F47460E00E79D91 /* WBWelcomeViewController.swift */; };
+		933941901F47460E00E79D91 /* WBWelcomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9339418E1F47460E00E79D91 /* WBWelcomeViewController.xib */; };
 		9340A9F21F3E9B0000C2B250 /* WBVisitorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9340A9F11F3E9B0000C2B250 /* WBVisitorView.swift */; };
 		9340A9F41F3E9B1000C2B250 /* WBVisitorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9340A9F31F3E9B1000C2B250 /* WBVisitorView.xib */; };
 		9340A9F61F3E9EC200C2B250 /* WBBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9340A9F51F3E9EC200C2B250 /* WBBaseViewController.swift */; };
@@ -53,6 +55,8 @@
 		931882AF1F4289880068B28C /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		931882B11F4289990068B28C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		9339418B1F473C3100E79D91 /* WBAccountViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WBAccountViewModel.swift; sourceTree = "<group>"; };
+		9339418D1F47460E00E79D91 /* WBWelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WBWelcomeViewController.swift; sourceTree = "<group>"; };
+		9339418E1F47460E00E79D91 /* WBWelcomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WBWelcomeViewController.xib; sourceTree = "<group>"; };
 		9340A9F11F3E9B0000C2B250 /* WBVisitorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WBVisitorView.swift; sourceTree = "<group>"; };
 		9340A9F31F3E9B1000C2B250 /* WBVisitorView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WBVisitorView.xib; sourceTree = "<group>"; };
 		9340A9F51F3E9EC200C2B250 /* WBBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WBBaseViewController.swift; sourceTree = "<group>"; };
@@ -266,6 +270,8 @@
 				9340A9F11F3E9B0000C2B250 /* WBVisitorView.swift */,
 				9340A9F31F3E9B1000C2B250 /* WBVisitorView.xib */,
 				9340A9F51F3E9EC200C2B250 /* WBBaseViewController.swift */,
+				9339418D1F47460E00E79D91 /* WBWelcomeViewController.swift */,
+				9339418E1F47460E00E79D91 /* WBWelcomeViewController.xib */,
 			);
 			path = main;
 			sourceTree = "<group>";
@@ -379,6 +385,7 @@
 				93FE126A1F2C72FC005F3157 /* LaunchScreen.storyboard in Resources */,
 				9340AA121F3FE2AF00C2B250 /* WBOAuthViewController.xib in Resources */,
 				9340AA031F3EC44800C2B250 /* WBPopoverViewController.xib in Resources */,
+				933941901F47460E00E79D91 /* WBWelcomeViewController.xib in Resources */,
 				93FE12671F2C72FC005F3157 /* Assets.xcassets in Resources */,
 				9340A9F41F3E9B1000C2B250 /* WBVisitorView.xib in Resources */,
 				93FE128C1F2C7FFA005F3157 /* MainVCSettings.json in Resources */,
@@ -450,6 +457,7 @@
 				93FE12821F2C7662005F3157 /* WBMessageViewController.swift in Sources */,
 				9340A9F61F3E9EC200C2B250 /* WBBaseViewController.swift in Sources */,
 				93FE12861F2C7678005F3157 /* WBMeViewController.swift in Sources */,
+				9339418F1F47460E00E79D91 /* WBWelcomeViewController.swift in Sources */,
 				9340A9F21F3E9B0000C2B250 /* WBVisitorView.swift in Sources */,
 				93FE127E1F2C7636005F3157 /* WBTabbarViewController.swift in Sources */,
 				93FE12891F2C77EC005F3157 /* MUtil.swift in Sources */,

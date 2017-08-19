@@ -183,6 +183,13 @@ extension WBOAuthViewController {
             //4.1保存对象
             NSKeyedArchiver.archiveRootObject(account, toFile: accountPath!)
             
+            WBAccountViewModel.shareIntance.account = account
+            
+            self.dismiss(animated: false, completion: nil)
+            
+            UIApplication.shared.keyWindow?.rootViewController = WBWelcomeViewController()
+            
+            
         }) { (task : URLSessionDataTask?, error : Error) in
             MLog(message: error.localizedDescription)
         }

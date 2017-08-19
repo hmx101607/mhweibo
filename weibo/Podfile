@@ -6,6 +6,7 @@ target 'weibo' do
 
   pod 'AFNetworking'
   pod 'SVProgressHUD'
+  pod 'SDWebImage'
 #  pod 'ShareSDK3'
 #  pod 'MOBFoundation'
 #  pod 'ShareSDK3/ShareSDKUI'

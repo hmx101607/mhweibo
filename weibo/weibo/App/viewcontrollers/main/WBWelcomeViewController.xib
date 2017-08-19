@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WBWelcomeViewController" customModule="weibo" customModuleProvider="target">
+            <connections>
+                <outlet property="headerBottomConstraint" destination="QJ6-mm-JWx" id="yY6-Wi-OY8"/>
+                <outlet property="headerImageView" destination="7f3-hA-FOf" id="zos-K4-Dxd"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ad_background" highlightedImage="ad_background" translatesAutoresizingMaskIntoConstraints="NO" id="dQI-5K-gtJ">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7f3-hA-FOf">
+                    <rect key="frame" x="142" y="427" width="90" height="90"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="90" id="8V9-Zc-0aW"/>
+                        <constraint firstAttribute="height" constant="90" id="xbT-Bo-W7l"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VGR-2I-8fM">
+                    <rect key="frame" x="166" y="532" width="42" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="7f3-hA-FOf" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="0Fr-AW-rF8"/>
+                <constraint firstAttribute="bottom" secondItem="dQI-5K-gtJ" secondAttribute="bottom" id="BLQ-yI-U9I"/>
+                <constraint firstItem="VGR-2I-8fM" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="FUK-Ni-mGq"/>
+                <constraint firstItem="VGR-2I-8fM" firstAttribute="top" secondItem="7f3-hA-FOf" secondAttribute="bottom" constant="15" id="GTw-ht-MOn"/>
+                <constraint firstAttribute="bottom" secondItem="7f3-hA-FOf" secondAttribute="bottom" constant="150" id="QJ6-mm-JWx"/>
+                <constraint firstItem="dQI-5K-gtJ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="YNz-0n-KVa"/>
+                <constraint firstItem="dQI-5K-gtJ" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="bfX-Ah-g0A"/>
+                <constraint firstAttribute="trailing" secondItem="dQI-5K-gtJ" secondAttribute="trailing" id="vxI-wd-8IQ"/>
+            </constraints>
+        </view>
+    </objects>
+    <resources>
+        <image name="ad_background" width="375" height="667"/>
+    </resources>
+</document>
