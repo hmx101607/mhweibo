@@ -44,6 +44,8 @@ class WBHomeStatusTableViewCell: UITableViewCell {
             timeLabel.text = homeStatusViewModel.createdAtText
             sourceLabel.text = homeStatusViewModel.sourceText
             contentLabel.text = homeStatusViewModel.status?.text
+            
+            nameLabel.textColor = homeStatusViewModel.vipImage == nil ? UIColor.black : UIColor.orange
         }
     }
 
