@@ -17,7 +17,7 @@ class WBHomeStatusViewModel: NSObject {
     
     var verifiedImage : UIImage?
     var vipImage : UIImage?
-    
+        
     var picUrls : [NSURL] = [NSURL]()
     
     init (status : WBHomeStatusModel) {
@@ -50,17 +50,15 @@ class WBHomeStatusViewModel: NSObject {
             vipImage = UIImage(named: "common_icon_membership_level\(mbrank)")
         }
         
-        if let picURLDicts = status.pic_urls {
+        let picURLDicts = status.pic_urls!.count != 0 ? status.pic_urls : status.retweeted_status?.pic_urls
+        if let picURLDicts = picURLDicts {
             for picURLDict in picURLDicts {
                 if let picURLString = picURLDict["thumbnail_pic" ] {
                     picUrls.append(NSURL(string: picURLString)!)
                 }
-//                guard let picURLString = picURLDict["thumbnail_pic" ] else {
-//                    continue
-//                }
-//                picUrls.append(NSURL(string: picURLString)!)
             }
         }
+        
     }
 
 }

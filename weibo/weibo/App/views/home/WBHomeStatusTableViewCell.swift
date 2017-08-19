@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 //var profile_image_url : String? //用户头像
 //var screen_name : String? //用户昵称
@@ -24,6 +25,7 @@ class WBHomeStatusTableViewCell: UITableViewCell {
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var sourceLabel: UILabel!
     @IBOutlet weak var contentLabel: UILabel!
+    @IBOutlet weak var retweetedStatusLabel: UILabel!
     
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var collectionViewWidthConstraint: NSLayoutConstraint!
@@ -56,6 +58,13 @@ class WBHomeStatusTableViewCell: UITableViewCell {
             sourceLabel.text = homeStatusViewModel.sourceText
             contentLabel.text = homeStatusViewModel.status?.text
             
+            if let retweeted = homeStatusViewModel.status?.retweeted_status?.text, let nickName = homeStatusViewModel.status?.retweeted_status?.user?.screen_name {
+                let retweetedStatus = "@\(nickName):\(retweeted)"
+                retweetedStatusLabel.text = retweetedStatus
+            } else {
+                retweetedStatusLabel.text = nil
+            }
+            
             nameLabel.textColor = homeStatusViewModel.vipImage == nil ? UIColor.black : UIColor.orange
             
             let collectionSize = calculateCollectionViewSizeWithCount(count: homeStatusViewModel.picUrls.count)
@@ -70,6 +79,15 @@ class WBHomeStatusTableViewCell: UITableViewCell {
         if count == 0 {
             return CGSize.zero
         }
+        
+//        if count == 1 {
+////            let urlString = viewModel?.picURLs.last?.absoluteString
+////            let image = SDWebImageManager.sharedManager().imageCache.imageFromDiskCacheForKey(urlString)
+//            let urlString = homeStatusViewModel?.picUrls.first?.absoluteString
+//            MLog(message: "urlString:\(String(describing: urlString))")
+//            let image = SDWebImageManager.shared().imageCache?.imageFromCache(forKey: urlString)
+//            return CGSize(width: (image?.size.width)! * 2 , height: (image?.size.height)! * 2)
+//        }
         
         let width = CGFloat((UIScreen.main.bounds.width - CGFloat(2 * margin + 2 * itemMargin)) / 3)
         if count == 4 {
@@ -98,6 +116,10 @@ extension WBHomeStatusTableViewCell : UICollectionViewDataSource, UICollectionVi
     }
     
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+//        if homeStatusViewModel?.picUrls.count == 1 {
+//            let image = SDWebImageManager.shared().imageCache?.imageFromCache(forKey: homeStatusViewModel?.picUrls.first?.absoluteString)
+//            return CGSize(width: (image?.size.width)! * 2 , height: (image?.size.height)! * 2)
+//        }
         let width = CGFloat((UIScreen.main.bounds.width - CGFloat(2 * margin + 2 * itemMargin)) / 3)
         return CGSize(width: width, height: width)
     }

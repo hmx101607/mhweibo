@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class WBHomeViewController: WBBaseViewController {
 
@@ -85,7 +86,26 @@ extension WBHomeViewController {
                 let homeStatusViewModel = WBHomeStatusViewModel(status: homeStatusModel)
                 self.statuss.append(homeStatusViewModel)
             }
+            self.cacheImage(homeStatusArray: self.statuss)
+        }
+    }
+    
+    fileprivate func cacheImage(homeStatusArray : [WBHomeStatusViewModel]) {
+        let group = DispatchGroup()
+        for homeStatusViewModel in homeStatusArray {
+            for url in homeStatusViewModel.picUrls {
+                group.enter()
+                
+                SDWebImageManager.shared().imageDownloader?.downloadImage(with: url as URL, options: [], progress: nil, completed: { (_, _, _, _) in
+                    group.leave()
+                    MLog(message: "下载了一张图片")
+                })
+            }
+        }
+        
+        group.notify(queue: DispatchQueue.main) { 
             self.tableView.reloadData()
+            MLog(message: "刷新表格")
         }
     }
 }

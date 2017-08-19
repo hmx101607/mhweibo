@@ -17,12 +17,18 @@ class WBHomeStatusModel: NSObject {
     var user : WBUserModel?
     var pic_urls : [[String : String]]? //图片数组
     
+    var retweeted_status : WBHomeStatusModel?//转发微博
+    
     init(dict : [String : AnyObject]) {
         super.init()
         setValuesForKeys(dict)
         if let userDict = dict["user"] as? [String : AnyObject] {
             user = WBUserModel(dict: userDict)
-        }        
+        }
+        
+        if let retweetedStatusDict = dict["retweeted_status"] as? [String : AnyObject] {
+            retweeted_status = WBHomeStatusModel(dict: retweetedStatusDict)
+        }
     }
     override func setValue(_ value: Any?, forUndefinedKey key: String) {
     }
