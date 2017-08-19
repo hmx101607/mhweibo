@@ -8,7 +8,7 @@
 
 import UIKit
 
-class WBBaseViewController: UIViewController {
+class WBBaseViewController: UITableViewController {
      // MARK:- 懒加载属性
     lazy var visitorView : WBVisitorView = WBVisitorView.visitorView()
     // MARK:- 是否登录
@@ -36,6 +36,8 @@ extension WBBaseViewController {
         visitorView.loginButton.addTarget(self, action: #selector(loginBtnClick), for: .touchUpInside)
         
     }
+    
+    
     
 }
 

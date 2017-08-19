@@ -166,7 +166,6 @@ extension WBOAuthViewController {
         
         // 2.获取请求的参数
         let parameters = ["access_token" : accessToken, "uid" : uid]
-        
         // 3.发送网络请求
         APIClient.shareInstance.get(urlString, parameters: parameters, progress: nil, success: { (task : URLSessionDataTask, resp : Any?) in
             // 2.拿到用户信息的结果

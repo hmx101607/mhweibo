@@ -10,6 +10,8 @@ import UIKit
 
 class WBHomeViewController: WBBaseViewController {
 
+    fileprivate lazy var statuss : [WBHomeStatusViewModel] = [WBHomeStatusViewModel]()
+    
     fileprivate lazy var titleBtn : WBNavigationTitleButton  = WBNavigationTitleButton()
     fileprivate lazy var popoverAnimatedTransitioning : WBPopoverAnimatedTransitioning = WBPopoverAnimatedTransitioning { [weak self] (present) in
         self?.titleBtn.isSelected = present
@@ -19,13 +21,20 @@ class WBHomeViewController: WBBaseViewController {
         super.viewDidLoad()
         visitorView.addAnnimationView()
         
+        
         if !isLogin {
             return
         }
-
-        setupNavigationBar()
         
-//        APIClient.shareInstance.request(.GET, urlString: "http://httpbin.org/get", parameters: ["name" : "mason" as AnyObject], finished: (AnyObject?, NSError?) -> ())
+        let accessToken = WBAccountViewModel.shareIntance.account?.access_token
+        MLog(message: "access_token:\(accessToken!)")
+        
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 200.0
+        tableView.separatorStyle = .none
+        tableView.register(UINib.init(nibName: String(describing: WBHomeStatusTableViewCell.self), bundle: nil), forCellReuseIdentifier: String(describing: WBHomeStatusTableViewCell.self))
+        setupNavigationBar()
+        loadStatus()
     }
     
 }
@@ -58,7 +67,42 @@ extension WBHomeViewController {
 }
 
 
+extension WBHomeViewController {
+    fileprivate func loadStatus() {
+        WBHomeStatusModel.loadHomeStatus { (result, error) in
+            if error != nil {
+                
+                return
+            }
+            
+            guard let statusArray = result else {
+                
+                return
+            }
+            
+            for dic in statusArray {
+                let homeStatusModel = WBHomeStatusModel(dict: dic)
+                let homeStatusViewModel = WBHomeStatusViewModel(status: homeStatusModel)
+                self.statuss.append(homeStatusViewModel)
+            }
+            self.tableView.reloadData()
+        }
+    }
+}
 
+extension WBHomeViewController {
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.statuss.count
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: WBHomeStatusTableViewCell.self))! as! WBHomeStatusTableViewCell
+        let homeStatusViewModel = statuss[indexPath.row]
+        cell.homeStatusViewModel = homeStatusViewModel
+        return cell
+    }
+}
 
 
 
