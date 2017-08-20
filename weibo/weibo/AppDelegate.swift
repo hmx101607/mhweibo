@@ -22,6 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         
         UITabBar.appearance().tintColor = UIColor.orange
+        UINavigationBar.appearance().tintColor = UIColor.white
         
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = viewController

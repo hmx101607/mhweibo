@@ -8,6 +8,7 @@
 
 import UIKit
 import SDWebImage
+import MJRefresh
 
 class WBHomeViewController: WBBaseViewController {
 
@@ -17,7 +18,8 @@ class WBHomeViewController: WBBaseViewController {
     fileprivate lazy var popoverAnimatedTransitioning : WBPopoverAnimatedTransitioning = WBPopoverAnimatedTransitioning { [weak self] (present) in
         self?.titleBtn.isSelected = present
     }
-    
+    fileprivate lazy var tipLabel : UILabel = UILabel()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         visitorView.addAnnimationView()
@@ -35,7 +37,12 @@ class WBHomeViewController: WBBaseViewController {
         tableView.separatorStyle = .none
         tableView.register(UINib.init(nibName: String(describing: WBHomeStatusTableViewCell.self), bundle: nil), forCellReuseIdentifier: String(describing: WBHomeStatusTableViewCell.self))
         setupNavigationBar()
-        loadStatus()
+        
+        tableView.mj_header = MJRefreshNormalHeader.init(refreshingTarget: self, refreshingAction: #selector(refreshData))
+        tableView.mj_footer = MJRefreshBackNormalFooter.init(refreshingTarget: self, refreshingAction: #selector(loadMore))
+        tableView.mj_header.beginRefreshing()
+        
+        setupTipLabel()
     }
     
 }
@@ -51,6 +58,20 @@ extension WBHomeViewController {
         
     }
     
+    fileprivate func setupTipLabel() {
+        // 1.将tipLabel添加父控件中
+        navigationController?.navigationBar.insertSubview(tipLabel, at: 0)
+        
+        // 2.设置tipLabel的frame
+        tipLabel.frame = CGRect(x: 0, y: 10, width: UIScreen.main.bounds.width, height: 32)
+        
+        // 3.设置tipLabel的属性
+        tipLabel.backgroundColor = UIColor.orange
+        tipLabel.textColor = UIColor.white
+        tipLabel.font = UIFont.systemFont(ofSize: 14)
+        tipLabel.textAlignment = .center
+        tipLabel.isHidden = true
+    }
 }
 
 extension WBHomeViewController {
@@ -69,8 +90,18 @@ extension WBHomeViewController {
 
 
 extension WBHomeViewController {
-    fileprivate func loadStatus() {
-        WBHomeStatusModel.loadHomeStatus { (result, error) in
+    fileprivate func loadStatus(isNewData : Bool) {
+        var since_id = 0
+        var max_id = 0
+        if isNewData {
+            since_id = statuss.first?.status?.mid ?? 0
+        } else {
+            max_id = statuss.last?.status?.mid ?? 0
+            max_id = max_id == 0 ? 0 : (max_id - 1)
+        }
+        
+        
+        WBHomeStatusModel.loadHomeStatus(since_id: since_id, max_id: max_id) { (result, error) in
             if error != nil {
                 
                 return
@@ -81,12 +112,20 @@ extension WBHomeViewController {
                 return
             }
             
+            var tempViewModel = [WBHomeStatusViewModel]()
             for dic in statusArray {
                 let homeStatusModel = WBHomeStatusModel(dict: dic)
                 let homeStatusViewModel = WBHomeStatusViewModel(status: homeStatusModel)
-                self.statuss.append(homeStatusViewModel)
+                tempViewModel.append(homeStatusViewModel)
             }
-            self.cacheImage(homeStatusArray: self.statuss)
+            
+            if isNewData {
+                self.statuss = tempViewModel + self.statuss
+            } else {
+                self.statuss += tempViewModel
+            }
+            
+            self.cacheImage(homeStatusArray: tempViewModel)
         }
     }
     
@@ -105,7 +144,29 @@ extension WBHomeViewController {
         
         group.notify(queue: DispatchQueue.main) { 
             self.tableView.reloadData()
-            MLog(message: "刷新表格")
+            
+            self.tableView.mj_header.endRefreshing()
+            self.tableView.mj_footer.endRefreshing()
+            
+            self.showTipLabel(count: homeStatusArray.count)
+        }
+    }
+    
+    /// 显示提示的Label
+    fileprivate func showTipLabel(count : Int) {
+        // 1.设置tipLabel的属性
+        tipLabel.isHidden = false
+        tipLabel.text = count == 0 ? "没有新数据" : "\(count) 条新微博"
+        
+        // 2.执行动画
+        UIView.animate(withDuration: 1.0, animations: { 
+            self.tipLabel.frame.origin.y = 44
+        }) { (_) in
+            UIView.animateKeyframes(withDuration: 1.0, delay: 1.5, options: [], animations: { 
+                self.tipLabel.frame.origin.y = 10
+            }, completion: { (_) in
+                self.tipLabel.isHidden = true
+            })
         }
     }
 }
@@ -122,6 +183,18 @@ extension WBHomeViewController {
         cell.homeStatusViewModel = homeStatusViewModel
         return cell
     }
+}
+
+extension WBHomeViewController {
+    @objc func refreshData () {
+        loadStatus(isNewData: true)
+    }
+    
+    @objc func loadMore () {
+        loadStatus(isNewData: false)
+    }
+    
+    
 }
 
 
