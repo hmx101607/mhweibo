@@ -112,7 +112,9 @@ class WBTabbarViewController: UITabBarController {
     }
     
     func buttonTap(button : UIButton) {
-        
+        let publicVC = WBPublicViewController()
+        let nav = UINavigationController(rootViewController: publicVC)
+        present(nav, animated: true, completion: nil)
     }
 
 
