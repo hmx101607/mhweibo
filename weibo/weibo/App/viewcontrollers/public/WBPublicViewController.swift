@@ -18,13 +18,16 @@ class WBPublicViewController: UIViewController {
     
     @IBOutlet weak var collectionViewHeightConstraint: NSLayoutConstraint!
     
+    
+    fileprivate lazy var images : [UIImage] = [UIImage]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         title = "发微博"
         textView.delegate = self
         setupNavigationBar()
-    
+        addNotificationCenter()
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardNotification(note:)), name: .UIKeyboardWillChangeFrame, object: nil)
     
@@ -72,8 +75,12 @@ extension WBPublicViewController {
         let rightBarButtonItem = UIBarButtonItem(title: "发布", style: .plain, target: self, action: #selector(publicAction))
         rightBarButtonItem.isEnabled = false
         navigationItem.rightBarButtonItem = rightBarButtonItem
+    }
+    
+    fileprivate func addNotificationCenter () {
+        NotificationCenter.default.addObserver(self, selector: #selector(addPicture), name: NSNotification.Name(rawValue: ADD_PICTURE_NOTIFICATION), object: nil)
         
-        
+        NotificationCenter.default.addObserver(self, selector: #selector(removePicture(note:)), name: NSNotification.Name(rawValue: ROMOVE_PICTURE_NOTIFICATION), object: nil)
     }
 }
 
@@ -87,8 +94,40 @@ extension WBPublicViewController {
         
     }
     
+    @objc fileprivate func addPicture () {
+        
+        if !UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+            return
+        }
+        
+        let imagePickerVC = UIImagePickerController()
+        imagePickerVC.sourceType = .photoLibrary
+        imagePickerVC.delegate = self
+        present(imagePickerVC, animated: true, completion: nil)
+        
+    }
     
+    @objc fileprivate func removePicture (note : Notification) {
+        guard let image = note.object as? UIImage else {
+            return
+        }
+        
+        let index = images.index(of: image)
+        images.remove(at: index!)
+        collectionView.images = images
+    }
+}
+
+extension WBPublicViewController : UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        let image = info[UIImagePickerControllerOriginalImage] as! UIImage
+        
+        images.append(image)
+        collectionView.images = images
+        
+        picker.dismiss(animated: true, completion: nil)
+    }
 }
 
 extension WBPublicViewController : UITextViewDelegate {

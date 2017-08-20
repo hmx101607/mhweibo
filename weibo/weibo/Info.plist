@@ -104,5 +104,9 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+    <key>NSCameraUsageDescription</key>
+    <string>weibo需要打开您相机</string>
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>weibo需要打开您的照片</string>
 </dict>
 </plist>
