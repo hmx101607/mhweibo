@@ -14,6 +14,10 @@ class WBPublicViewController: UIViewController {
     @IBOutlet weak var tipLabel: UILabel!
     @IBOutlet weak var toolbarBottomConstraint: NSLayoutConstraint!
     
+    @IBOutlet weak var collectionView: WBChoicePictrueCollectionView!
+    
+    @IBOutlet weak var collectionViewHeightConstraint: NSLayoutConstraint!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -47,6 +51,16 @@ class WBPublicViewController: UIViewController {
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
+    
+    @IBAction func choicePictureAction(_ sender: UIButton) {
+        textView.resignFirstResponder()
+        
+        collectionViewHeightConstraint.constant = UIScreen.main.bounds.height * 0.65
+        UIView.animate(withDuration: 0.25) { 
+            self.view.layoutIfNeeded()
+        }
+    }
+    
 }
 
 extension WBPublicViewController {
@@ -72,6 +86,9 @@ extension WBPublicViewController {
     @objc fileprivate func publicAction () {
         
     }
+    
+    
+    
 }
 
 extension WBPublicViewController : UITextViewDelegate {
