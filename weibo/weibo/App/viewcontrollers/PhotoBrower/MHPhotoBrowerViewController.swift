@@ -12,7 +12,7 @@ class MHPhotoBrowerViewController: UIViewController {
     
     fileprivate let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: MHPhotoBrowerFlowLayout())
 
-    var indexPath : NSIndexPath?
+    var indexPath : IndexPath?
     var picUrls : [NSURL] = [NSURL]()
     
     override func viewDidLoad() {
@@ -43,6 +43,8 @@ extension MHPhotoBrowerViewController {
         collectionView.frame = view.bounds
         collectionView.register(MHPhotoBrowerItemCollectionViewCell.self, forCellWithReuseIdentifier: String(describing: MHPhotoBrowerItemCollectionViewCell.self))
         collectionView.dataSource = self
+        
+        collectionView.scrollToItem(at: indexPath!, at: .left, animated: false)
     }
     
     fileprivate func addNotification () {
@@ -63,6 +65,18 @@ extension MHPhotoBrowerViewController : UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: MHPhotoBrowerItemCollectionViewCell.self), for: indexPath) as! MHPhotoBrowerItemCollectionViewCell
         cell.imagePath = picUrls[indexPath.row] as URL
         return cell
+    }
+}
+
+extension MHPhotoBrowerViewController : PhotoBrowerAnimatorDismissedDelegate {
+    //获取indexPath
+    func indexPathForDimissView() -> IndexPath {
+        return IndexPath(row: 0, section: 0)
+    }
+    //获取假的UIImageView
+    func imageViewForDimissView() -> UIImageView {
+        let imageView = UIImageView()
+        return imageView
     }
 }
 

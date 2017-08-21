@@ -80,14 +80,6 @@ class WBHomeStatusTableViewCell: UITableViewCell {
             return CGSize.zero
         }
         
-//        if count == 1 {
-////            let urlString = viewModel?.picURLs.last?.absoluteString
-////            let image = SDWebImageManager.sharedManager().imageCache.imageFromDiskCacheForKey(urlString)
-//            let urlString = homeStatusViewModel?.picUrls.first?.absoluteString
-//            MLog(message: "urlString:\(String(describing: urlString))")
-//            let image = SDWebImageManager.shared().imageCache?.imageFromCache(forKey: urlString)
-//            return CGSize(width: (image?.size.width)! * 2 , height: (image?.size.height)! * 2)
-//        }
         
         let width = CGFloat((UIScreen.main.bounds.width - CGFloat(2 * margin + 2 * itemMargin)) / 3)
         if count == 4 {
@@ -135,6 +127,49 @@ extension WBHomeStatusTableViewCell : UICollectionViewDataSource, UICollectionVi
     }
 }
 
+
+extension WBHomeStatusTableViewCell : PhotoBrowerAnimatorPresentedDelegate {
+    func startRect (indexPath : NSIndexPath) -> CGRect {
+        let cell = collectionView.cellForItem(at: indexPath as IndexPath)
+        let rect = cell?.convert((cell?.frame)!, to: UIApplication.shared.keyWindow)
+        return rect!
+    }
+    //获取结束时rect
+    func endRect (indexPath : NSIndexPath) -> CGRect {
+        //从缓存中读取对应的图片
+        let imagePath = homeStatusViewModel?.picUrls[indexPath.row]
+        let url = imagePath!.absoluteString
+        guard let image = SDWebImageManager.shared().imageCache?.imageFromMemoryCache(forKey: url) else {
+            return CGRect.zero
+        }
+        //获取图片对应的大小，并计算出动画后，图片应该的大小
+        let imageViewW = UIScreen.main.bounds.width
+        let imageViewH = imageViewW * (image.size.height) / (image.size.width)
+        var imageViewY = CGFloat(0)
+        if imageViewH > UIScreen.main.bounds.height {
+            imageViewY = CGFloat(0)
+        } else {
+            imageViewY = CGFloat((UIScreen.main.bounds.height - imageViewH) / 2)
+        }
+        
+        let frame = CGRect(x: 0, y: imageViewY, width: imageViewW, height: imageViewH)
+        return frame
+    }
+    
+    //获取假的UIImageView
+    func iconImageView(indexPath : NSIndexPath) -> UIImageView {
+        //创建图片
+        let imageView = UIImageView()
+        let imagePath = homeStatusViewModel?.picUrls[indexPath.row]
+        let url = imagePath!.absoluteString
+        guard let image = SDWebImageManager.shared().imageCache?.imageFromMemoryCache(forKey: url) else {
+            return imageView
+        }
+        imageView.image = image
+        //设定图片
+        return imageView
+    }
+}
 
 
 

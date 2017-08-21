@@ -19,7 +19,8 @@ class WBHomeViewController: WBBaseViewController {
         self?.titleBtn.isSelected = present
     }
     fileprivate lazy var tipLabel : UILabel = UILabel()
-
+    fileprivate lazy var photoBrowerAnimator : MHPhotoBrowerAnimator = MHPhotoBrowerAnimator()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         visitorView.addAnnimationView()
@@ -86,9 +87,17 @@ extension WBHomeViewController {
         
         
         let browerPictureVC = MHPhotoBrowerViewController()
-        browerPictureVC.indexPath = indexPath
+        browerPictureVC.indexPath = indexPath as IndexPath
         browerPictureVC.picUrls = picUrls
         browerPictureVC.modalPresentationStyle = .custom
+        
+        
+        browerPictureVC.transitioningDelegate = photoBrowerAnimator
+        
+        photoBrowerAnimator.indexPath = indexPath as IndexPath;
+        photoBrowerAnimator.presentDelegate = cell
+        photoBrowerAnimator.dismissDelegate = browerPictureVC
+        
         present(browerPictureVC, animated: true, completion: nil)
     }
 }
