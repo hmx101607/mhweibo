@@ -21,6 +21,7 @@ class MHPhotoBrowerViewController: UIViewController {
         view.backgroundColor = UIColor.red
         
         setupUI()
+        addNotification()
         
     }
     
@@ -29,8 +30,8 @@ class MHPhotoBrowerViewController: UIViewController {
         view.frame.size.width = UIScreen.main.bounds.size.width + 20.0
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        dismiss(animated: true, completion: nil)
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
 
 }
@@ -39,22 +40,28 @@ extension MHPhotoBrowerViewController {
     
     fileprivate func setupUI () {
         view.addSubview(collectionView)
-        let size = view.bounds.size
-        collectionView.frame = CGRect(x: 0, y: 0, width: size.width - 20.0, height: size.height)
+        collectionView.frame = view.bounds
         collectionView.register(MHPhotoBrowerItemCollectionViewCell.self, forCellWithReuseIdentifier: String(describing: MHPhotoBrowerItemCollectionViewCell.self))
         collectionView.dataSource = self
-        
+    }
+    
+    fileprivate func addNotification () {
+        NotificationCenter.default.addObserver(self, selector: #selector(dismissPhotoBrower), name: NSNotification.Name(rawValue: BROWER_PICTURE_DISMISS), object: nil)
+    }
+    
+    @objc func dismissPhotoBrower () {
+        dismiss(animated: true, completion: nil)
     }
 }
 
 extension MHPhotoBrowerViewController : UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 4
+        return picUrls.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: MHPhotoBrowerItemCollectionViewCell.self), for: indexPath) as! MHPhotoBrowerItemCollectionViewCell
-        cell.iconImageView.backgroundColor = indexPath.row % 2 == 0 ? UIColor.red : UIColor.blue
+        cell.imagePath = picUrls[indexPath.row] as URL
         return cell
     }
 }
@@ -64,7 +71,7 @@ class MHPhotoBrowerFlowLayout : UICollectionViewFlowLayout {
     override func prepare() {
         super.prepare()
         
-        itemSize = (collectionView?.bounds.size)!
+        itemSize = (collectionView?.frame.size)!
         minimumLineSpacing = 0
         minimumInteritemSpacing = 0
         scrollDirection = .horizontal

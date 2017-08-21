@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FLEX
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -20,7 +21,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-        
         UITabBar.appearance().tintColor = UIColor.orange
         UINavigationBar.appearance().tintColor = UIColor.orange
         
@@ -28,7 +28,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.rootViewController = viewController
         window?.backgroundColor = UIColor.white
         window?.makeKeyAndVisible()
+        
+        addFlexTapGestureIfNeed()
+
         return true
+    }
+    
+    
+    func addFlexTapGestureIfNeed () {
+        let tap = UITapGestureRecognizer.init()
+        tap.numberOfTapsRequired = 2
+        tap.numberOfTouchesRequired = 2
+        tap.addTarget(self, action: #selector(didTapFlex(_:)))
+        window?.addGestureRecognizer(tap)
+    }
+    
+    func didTapFlex (_ taps: UITapGestureRecognizer){
+        if taps.state == UIGestureRecognizerState.recognized {
+            FLEXManager.shared().showExplorer()
+        }
     }
     
     func applicationWillResignActive(_ application: UIApplication) {

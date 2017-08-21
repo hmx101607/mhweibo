@@ -18,7 +18,7 @@ class WBHomeStatusViewModel: NSObject {
     var verifiedImage : UIImage?
     var vipImage : UIImage?
         
-    var picUrls : [NSURL] = [NSURL]()
+    var picUrls : [URL] = [URL]()
     
     init (status : WBHomeStatusModel) {
         self.status = status
@@ -54,7 +54,7 @@ class WBHomeStatusViewModel: NSObject {
         if let picURLDicts = picURLDicts {
             for picURLDict in picURLDicts {
                 if let picURLString = picURLDict["thumbnail_pic" ] {
-                    picUrls.append(NSURL(string: picURLString)!)
+                    picUrls.append(NSURL(string: picURLString)! as URL)
                 }
             }
         }

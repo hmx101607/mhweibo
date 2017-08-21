@@ -111,7 +111,8 @@ extension WBHomeStatusTableViewCell : UICollectionViewDataSource, UICollectionVi
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView .dequeueReusableCell(withReuseIdentifier: String(describing: WBImageCollectionViewCell.self), for: indexPath) as! WBImageCollectionViewCell
         let url = homeStatusViewModel?.picUrls[indexPath.row]
-        cell.iconImageView.setImageWith(url! as URL, placeholderImage: UIImage(named: "empty_picture"))
+        
+        cell.iconImageView.sd_setImage(with: url, placeholderImage: UIImage(named: "empty_picture"))
         return cell
     }
     

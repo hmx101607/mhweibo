@@ -154,9 +154,11 @@ extension WBHomeViewController {
             for url in homeStatusViewModel.picUrls {
                 group.enter()
                 
-                SDWebImageManager.shared().imageDownloader?.downloadImage(with: url as URL, options: [], progress: nil, completed: { (_, _, _, _) in
+                SDWebImageManager.shared().imageDownloader?.downloadImage(with: url, options: [], progress: nil, completed: { (_, _, _, _) in
+                    MLog(message: "url: \(url)")
                     group.leave()
                 })
+                
             }
         }
         
