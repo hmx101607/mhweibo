@@ -91,6 +91,9 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="compose_emoticonbutton_background"/>
                                 <state key="highlighted" image="compose_emoticonbutton_background"/>
+                                <connections>
+                                    <action selector="emojiAction:" destination="-1" eventType="touchUpInside" id="As9-Hh-8tT"/>
+                                </connections>
                             </button>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="40F-tc-6FJ"/>
@@ -100,6 +103,9 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="compose_keyboardbutton_background"/>
                                 <state key="highlighted" image="compose_keyboardbutton_background"/>
+                                <connections>
+                                    <action selector="showKeyboardAction:" destination="-1" eventType="touchUpInside" id="MjQ-99-5kY"/>
+                                </connections>
                             </button>
                         </barButtonItem>
                     </items>

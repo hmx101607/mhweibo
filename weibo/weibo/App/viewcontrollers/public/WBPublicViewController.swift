@@ -18,6 +18,46 @@ class WBPublicViewController: UIViewController {
     
     @IBOutlet weak var collectionViewHeightConstraint: NSLayoutConstraint!
     
+    fileprivate lazy var emoticonVc : EmoticonController = EmoticonController { (emoticon) in
+        self.insertEmoticonIntoTextView(emoticon: emoticon)
+    }
+    
+    fileprivate func insertEmoticonIntoTextView(emoticon : Emoticon) {
+        if emoticon.isEmpty {
+            
+            return
+        }
+        
+        if emoticon.isRemove {
+            textView.deleteBackward()
+            return
+        }
+        
+        if emoticon.emojiCode != nil {
+            let textRange = textView.selectedTextRange
+            textView.replace(textRange!, withText: emoticon.emojiCode!)
+            return
+        }
+        
+        let attachemnt = WBEmojiTextAttachment()
+        attachemnt.chs = emoticon.chs
+        attachemnt.image = UIImage(contentsOfFile: emoticon.pngPath!)
+        let font = textView.font
+        attachemnt.bounds = CGRect(x: 0, y: -4, width: font!.lineHeight, height: font!.lineHeight)
+        let imageTextAttributed = NSAttributedString(attachment: attachemnt)
+        
+        let originTextAttributed = NSMutableAttributedString(attributedString: textView.attributedText)
+        
+        let seletedRange = textView.selectedRange
+        
+        originTextAttributed.replaceCharacters(in: seletedRange, with: imageTextAttributed)
+        
+        textView.attributedText = originTextAttributed
+        
+        textView.font = font
+        
+        textView.selectedRange = NSRange(location: seletedRange.location + 1, length: 0)
+    }
     
     fileprivate lazy var images : [UIImage] = [UIImage]()
     
@@ -64,6 +104,21 @@ class WBPublicViewController: UIViewController {
         }
     }
     
+    @IBAction func emojiAction(_ sender: UIButton) {
+        textView.resignFirstResponder()
+        
+        textView.inputView = emoticonVc.view
+        textView.becomeFirstResponder()
+        
+    }
+    
+    @IBAction func showKeyboardAction(_ sender: UIButton) {
+        textView.resignFirstResponder()
+        
+        textView.inputView = nil
+        textView.becomeFirstResponder()
+    }
+    
 }
 
 extension WBPublicViewController {
@@ -92,6 +147,16 @@ extension WBPublicViewController {
     
     @objc fileprivate func publicAction () {
         
+        let resultAttributed = NSMutableAttributedString(attributedString: textView.attributedText)
+        let ranges = NSRange(location: 0, length: resultAttributed.length)
+        resultAttributed.enumerateAttributes(in: ranges, options: []) { (dict, range, _) in
+            if let textAttachment = dict["NSAttachment"] as? WBEmojiTextAttachment {
+                resultAttributed.replaceCharacters(in: range, with: textAttachment.chs!)
+            }
+        }
+        
+        
+        MLog(message: resultAttributed.string)
     }
     
     @objc fileprivate func addPicture () {
