@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class MHPhotoBrowerViewController: UIViewController {
     
@@ -71,11 +72,34 @@ extension MHPhotoBrowerViewController : UICollectionViewDataSource {
 extension MHPhotoBrowerViewController : PhotoBrowerAnimatorDismissedDelegate {
     //获取indexPath
     func indexPathForDimissView() -> IndexPath {
-        return IndexPath(row: 0, section: 0)
+        let cell = collectionView.visibleCells.first
+        let indexPath = collectionView.indexPath(for: cell!)
+        return indexPath!
     }
     //获取假的UIImageView
     func imageViewForDimissView() -> UIImageView {
         let imageView = UIImageView()
+        let cell = collectionView.visibleCells.first
+        let indexPath = collectionView.indexPath(for: cell!)
+        
+        let imagePath = picUrls[(indexPath?.row)!]
+        
+        guard let image = SDWebImageManager.shared().imageCache?.imageFromMemoryCache(forKey: imagePath.absoluteString) else {
+            return imageView
+        }
+        imageView.image = image
+        
+        let imageViewW = UIScreen.main.bounds.width
+        let imageViewH = imageViewW * (image.size.height) / (image.size.width)
+        var imageViewY = CGFloat(0)
+        if imageViewH > UIScreen.main.bounds.height {
+            imageViewY = CGFloat(0)
+        } else {
+            imageViewY = CGFloat((UIScreen.main.bounds.height - imageViewH) / 2)
+        }
+        
+        imageView.frame = CGRect(x: 0, y: imageViewY, width: imageViewW, height: imageViewH)
+        
         return imageView
     }
 }

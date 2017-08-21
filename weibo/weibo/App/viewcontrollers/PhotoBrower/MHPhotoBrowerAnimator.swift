@@ -81,6 +81,19 @@ extension MHPhotoBrowerAnimator {
     
     func dismissAnimator(transitionContext: UIViewControllerContextTransitioning) {
         
+        let dismissView = transitionContext.view(forKey: .from)
+        dismissView?.removeFromSuperview()
+        
+        let imageView = dismissDelegate?.imageViewForDimissView()
+        transitionContext.containerView.addSubview(imageView!)
+        
+        UIView.animate(withDuration: transitionDuration(using: transitionContext), animations: {
+            let indexPath = self.dismissDelegate?.indexPathForDimissView()
+            imageView?.frame = (self.presentDelegate?.startRect(indexPath: indexPath! as NSIndexPath))!
+        }) { (_) in
+            imageView?.removeFromSuperview()
+            transitionContext.completeTransition(true)
+        }
     }
 
 }
