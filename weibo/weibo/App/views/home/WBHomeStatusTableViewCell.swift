@@ -115,11 +115,12 @@ extension WBHomeStatusTableViewCell : UICollectionViewDataSource, UICollectionVi
         return cell
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let dict = [BROWER_INDEX_KEY : indexPath, BROWER_PICTURE_KEY : homeStatusViewModel?.picUrls ?? [NSURL]()] as [String : Any]
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: BROWER_PICTURE_NOTIFICATION), object: self, userInfo: dict)
+    }
+    
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        if homeStatusViewModel?.picUrls.count == 1 {
-//            let image = SDWebImageManager.shared().imageCache?.imageFromCache(forKey: homeStatusViewModel?.picUrls.first?.absoluteString)
-//            return CGSize(width: (image?.size.width)! * 2 , height: (image?.size.height)! * 2)
-//        }
         let width = CGFloat((UIScreen.main.bounds.width - CGFloat(2 * margin + 2 * itemMargin)) / 3)
         return CGSize(width: width, height: width)
     }

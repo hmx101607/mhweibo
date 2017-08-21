@@ -43,6 +43,7 @@ class WBHomeViewController: WBBaseViewController {
         tableView.mj_header.beginRefreshing()
         
         setupTipLabel()
+        addNotification()
     }
     
 }
@@ -71,6 +72,24 @@ extension WBHomeViewController {
         tipLabel.font = UIFont.systemFont(ofSize: 14)
         tipLabel.textAlignment = .center
         tipLabel.isHidden = true
+    }
+    
+    fileprivate func addNotification () {
+        NotificationCenter.default.addObserver(self, selector: #selector(browerPictureNotification(note:)), name: NSNotification.Name(rawValue: BROWER_PICTURE_NOTIFICATION), object: nil)
+    }
+    
+    
+    @objc fileprivate func browerPictureNotification (note : Notification) {
+        let indexPath = note.userInfo?[BROWER_INDEX_KEY] as! NSIndexPath
+        let picUrls = note.userInfo?[BROWER_PICTURE_KEY] as! [NSURL]
+        let cell = note.object as! WBHomeStatusTableViewCell
+        
+        
+        let browerPictureVC = MHPhotoBrowerViewController()
+        browerPictureVC.indexPath = indexPath
+        browerPictureVC.picUrls = picUrls
+        browerPictureVC.modalPresentationStyle = .custom
+        present(browerPictureVC, animated: true, completion: nil)
     }
 }
 
@@ -137,7 +156,6 @@ extension WBHomeViewController {
                 
                 SDWebImageManager.shared().imageDownloader?.downloadImage(with: url as URL, options: [], progress: nil, completed: { (_, _, _, _) in
                     group.leave()
-                    MLog(message: "下载了一张图片")
                 })
             }
         }

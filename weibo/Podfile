@@ -8,6 +8,7 @@ target 'weibo' do
   pod 'SVProgressHUD'
   pod 'SDWebImage'
   pod 'MJRefresh'
+  pod 'FLEX'
 #  pod 'ShareSDK3'
 #  pod 'MOBFoundation'
 #  pod 'ShareSDK3/ShareSDKUI'
