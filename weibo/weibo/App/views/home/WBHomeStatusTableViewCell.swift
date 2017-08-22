@@ -131,8 +131,8 @@ extension WBHomeStatusTableViewCell : UICollectionViewDataSource, UICollectionVi
 extension WBHomeStatusTableViewCell : PhotoBrowerAnimatorPresentedDelegate {
     func startRect (indexPath : NSIndexPath) -> CGRect {
         let cell = collectionView.cellForItem(at: indexPath as IndexPath)
-        let rect = cell?.convert((cell?.frame)!, to: UIApplication.shared.keyWindow)
-        return rect!
+        let rect = collectionView.convert((cell?.frame)!, to: UIApplication.shared.keyWindow)
+        return rect
     }
     //获取结束时rect
     func endRect (indexPath : NSIndexPath) -> CGRect {

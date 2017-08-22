@@ -37,12 +37,12 @@ class WBHomeViewController: WBBaseViewController {
         tableView.estimatedRowHeight = 200.0
         tableView.separatorStyle = .none
         tableView.register(UINib.init(nibName: String(describing: WBHomeStatusTableViewCell.self), bundle: nil), forCellReuseIdentifier: String(describing: WBHomeStatusTableViewCell.self))
-        setupNavigationBar()
         
         tableView.mj_header = MJRefreshNormalHeader.init(refreshingTarget: self, refreshingAction: #selector(refreshData))
         tableView.mj_footer = MJRefreshBackNormalFooter.init(refreshingTarget: self, refreshingAction: #selector(loadMore))
         tableView.mj_header.beginRefreshing()
         
+        setupNavigationBar()
         setupTipLabel()
         addNotification()
     }
@@ -52,8 +52,8 @@ class WBHomeViewController: WBBaseViewController {
 extension WBHomeViewController {
     
     func setupNavigationBar () {
-        navigationItem.leftBarButtonItem = UIBarButtonItem(imageName: "navigationbar_friendattention")
-        navigationItem.rightBarButtonItem = UIBarButtonItem(imageName: "navigationbar_pop")
+//        navigationItem.leftBarButtonItem = UIBarButtonItem(imageName: "navigationbar_friendattention")
+//        navigationItem.rightBarButtonItem = UIBarButtonItem(imageName: "navigationbar_pop")
         
         navigationItem.titleView = titleBtn
         titleBtn.addTarget(self, action: #selector(titleBtnClick(titleBtn:)), for: .touchUpInside)

@@ -17,7 +17,7 @@ class WBTabbarViewController: UITabBarController {
         
         //添加控制器页面
         addChildViewController(childVCName: "WBHomeViewController", title: "首页", imageName: "tabbar_home")
-        addChildViewController(childVCName: "WBMessageViewController", title: "消息", imageName: "tabbar_profile")
+        addChildViewController(childVCName: "WBMessageViewController", title: "消息", imageName: "tabbar_message_center")
         addChildViewController(childVCName: "WBNullViewController", title: "", imageName: "")
         addChildViewController(childVCName: "WBDiscoverViewController", title: "发现", imageName: "tabbar_discover")
         addChildViewController(childVCName: "WBMeViewController", title: "我的", imageName: "tabbar_profile")
